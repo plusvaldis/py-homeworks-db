@@ -1,0 +1,46 @@
+CREATE TABLE Genre (
+GenreID SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT null
+);
+
+CREATE TABLE Executor (
+ExecutorID SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT null
+);
+
+CREATE TABLE Album (
+AlbumID SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+year DATE not null
+);
+
+CREATE TABLE Collection (
+CollectionID SERIAL PRIMARY KEY,
+name VARCHAR(30) NOT NULL,
+year DATE not null
+);
+
+CREATE TABLE ExeGe (
+GenreID INTEGER REFERENCES Genre(GenreID),
+ExecutorID INTEGER REFERENCES Executor(ExecutorID),
+constraint ExeGeID primary key (GenreID, ExecutorID)
+);
+
+CREATE TABLE ExeA (
+ExecutorID INTEGER REFERENCES Executor(ExecutorID),
+AlbumID INTEGER REFERENCES Album(AlbumID),
+constraint ExeAID primary key (ExecutorID, AlbumID)
+);
+
+CREATE TABLE Track ( 
+TrackID SERIAL PRIMARY KEY,
+AlbumID INTEGER NOT NULL REFERENCES Album(AlbumID),
+Name VARCHAR(30) NOT NULL,
+Duration INTEGER NOT null
+);
+
+CREATE TABLE ExeC (
+TrackID INTEGER REFERENCES Track(TrackID),
+CollectionID INTEGER REFERENCES Collection(CollectionID),
+constraint ExeCID primary key (TrackID, CollectionID)
+);
