@@ -45,12 +45,13 @@ select name from executor where name NOT LIKE '% %';
 
 5. Название треков, которые содержат слово «мой» или «my».
 
-select name from track where name LIKE '%my%' or name LIKE '%мой%';
+SELECT name FROM track WHERE name ~ '\y(my|мой)\y';
 
-   name    
------------
- my lock a
-(1 row)
+     name      
+---------------
+ my list sound
+ ler my gong
+(2 rows)
 
 
 ## Задание 3
